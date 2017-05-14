@@ -71,11 +71,8 @@ def ChooseColor(img, tr):
     return (R, G, B)
 
 
-import time
 def TriAndPaint(img, points, outputIMG):
-    print(time.time())
     tri = Delaunay(points)
-    print(time.time())
     triList = points[tri.simplices]
     cMap = ListedColormap(
         np.array([ChooseColor(img, tr) for tr in triList]))
@@ -84,7 +81,6 @@ def TriAndPaint(img, points, outputIMG):
     # cMap = ListedColormap(
     #     np.array([img.getpixel((x, y)) for x, y in center]) / 256)
     color = np.array(range(len(triList)))
-    print(time.time())
     # print(color)
 
     width, height = img.size
