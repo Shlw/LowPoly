@@ -2,7 +2,7 @@
 PKU homework
 
 # Prerequisite
-Python3, Scipy, Numpy, Pillow
+Python3, Scipy, Numpy, Pillow, Matplotlib
 
 # Usage
     $ python3 LowPoly.py path/to/input.png path/of/output.png num_of_scattered_points
