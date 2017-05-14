@@ -9,7 +9,7 @@ Python3, Scipy, Numpy, Pillow, Matplotlib
 
 # Demo
 
-![umbrella](./demo/other/umbrella.png)
+![umbrella](./demo/other/umbrella_raw.png)
 
 ![umbrella_2000](./demo/other/umbrella_2000.png)
 
