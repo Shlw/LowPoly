@@ -3,7 +3,9 @@ from matplotlib.colors import ListedColormap
 from math import floor, ceil
 import numpy as np
 import matplotlib.pyplot as plt
+from random import random
 
+'''
 def GetCrosspoint(tr, y):
     cp = []
     # print(tr)
@@ -42,9 +44,38 @@ def ChooseColor(img, tr):
     G /= (rangeR - rangeL) * 256
     B /= (rangeR - rangeL) * 256
     return (R, G, B)
+'''
 
+def ChooseColor(img, tr):
+    f = img.convert('L').load()
+    inside = [np.sum(tr, axis=0) / 3]
+
+    pt1, pt2 = tr[1] - tr[0], tr[2] - tr[0]
+    area = abs(pt1[0] * pt2[1] - pt1[1] * pt2[0]) / 2
+    cnt = int(area * 0.2)
+    for run in range(cnt):
+        x, y = random(), random()
+        if (x + y > 1):
+            x, y = 1-x, 1-y
+        inside += [tr[0] + pt1*x + pt2*y]
+    inside.sort(key=lambda pt: f[pt[0], pt[1]])
+    rangeL = floor(0.4 * len(inside))
+    rangeR = ceil(0.6 * len(inside))
+    R, G, B = 0, 0, 0
+    for x, y in inside[rangeL:rangeR]:
+        r, g, b = img.getpixel((x, y))
+        R, G, B = R + r, G + g, B + b
+    R /= (rangeR - rangeL) * 256
+    G /= (rangeR - rangeL) * 256
+    B /= (rangeR - rangeL) * 256
+    return (R, G, B)
+
+
+import time
 def TriAndPaint(img, points, outputIMG):
+    print(time.time())
     tri = Delaunay(points)
+    print(time.time())
     triList = points[tri.simplices]
     cMap = ListedColormap(
         np.array([ChooseColor(img, tr) for tr in triList]))
@@ -53,6 +84,7 @@ def TriAndPaint(img, points, outputIMG):
     # cMap = ListedColormap(
     #     np.array([img.getpixel((x, y)) for x, y in center]) / 256)
     color = np.array(range(len(triList)))
+    print(time.time())
     # print(color)
 
     width, height = img.size
