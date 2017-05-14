@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def TriAndPaint(img, points):
+def TriAndPaint(img, points, outputIMG):
     tri = Delaunay(points)
     center = np.sum(points[tri.simplices], axis=1) / 3
     # print(center)
@@ -24,5 +24,5 @@ def TriAndPaint(img, points):
     plt.xlim(0, width)
     plt.ylim(0, height)
     plt.gca().invert_yaxis()
-    plt.savefig('Delaunay.png')
+    plt.savefig(outputIMG)
     plt.show()
