@@ -19,6 +19,6 @@ Python3, Scipy, Numpy, Pillow
 
 ![equestria_raw](./demo/pointscompare/equestria_raw.jpg)
 
-![equestria_2000](./demo/pointscompare/equestria_2000.jpg)
+![equestria_6000](./demo/pointscompare/equestria_6000.jpg)
 # More
 See in report.pdf & dir demo
