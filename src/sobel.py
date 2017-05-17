@@ -13,8 +13,8 @@ def SobelEdgeDetection(im):
     Gy = [[0] * height for x in range(width)]
     G = [[0] * height for x in range(width)]
 
-    K = 75  # 灰度阈值
-    pt = []  # 边界点
+    K = 75  # gray scale threshold
+    pt = []  # edge points
     for x in range(1, width - 1):
         for y in range(1, height - 1):
             Gx[x][y] = f[x + 1, y - 1] + 2 * f[x + 1, y] + f[x + 1, y + 1] - \

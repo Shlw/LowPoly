@@ -5,7 +5,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 from random import random
 
-'''
 def GetCrosspoint(tr, y):
     cp = []
     # print(tr)
@@ -22,6 +21,7 @@ def GetCrosspoint(tr, y):
         cp[0], cp[1] = cp[1], cp[0]
     return cp
 
+# sample all
 def ChooseColor(img, tr):
     f = img.convert('L').load()
     inside = [np.sum(tr, axis=0) / 3]
@@ -44,8 +44,9 @@ def ChooseColor(img, tr):
     G /= (rangeR - rangeL) * 256
     B /= (rangeR - rangeL) * 256
     return (R, G, B)
-'''
 
+# random sample
+''' 
 def ChooseColor(img, tr):
     f = img.convert('L').load()
     inside = [np.sum(tr, axis=0) / 3]
@@ -69,6 +70,7 @@ def ChooseColor(img, tr):
     G /= (rangeR - rangeL) * 256
     B /= (rangeR - rangeL) * 256
     return (R, G, B)
+'''
 
 
 def TriAndPaint(img, points, outputIMG):
@@ -76,6 +78,7 @@ def TriAndPaint(img, points, outputIMG):
     triList = points[tri.simplices]
     cMap = ListedColormap(
         np.array([ChooseColor(img, tr) for tr in triList]))
+    # use core rgb
     # center = np.sum(points[tri.simplices], axis=1) / 3
     # print(center)
     # cMap = ListedColormap(
@@ -96,5 +99,6 @@ def TriAndPaint(img, points, outputIMG):
     plt.ylim(0, height)
     plt.gca().invert_yaxis()
     plt.savefig(outputIMG)
-    plt.show()
+    # uncomment show() if you want to view when it's done
+    # plt.show()
 
